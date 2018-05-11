@@ -16,6 +16,7 @@ def home(request):
         'RobotCaleb',
         'noobs2ninjas',
         'Ninja',
+        'omgcorey1'
     ]
 
     user_list = client.users.translate_usernames_to_ids(fcc_users)
@@ -23,7 +24,6 @@ def home(request):
 
     for user in user_list:
         user_dict = {}
-
         stream = client.streams.get_live_streams(user.id)
         user_dict['name'] = user.name
         user_dict['logo'] = str(user['logo'])
@@ -32,8 +32,6 @@ def home(request):
         if not stream:
             user_status = user_dict['name'] + ' is offline'
             user_dict['status'] = user_status
-
-
         else:
             user_status = user_dict['name'] + ' is now playing: ' + stream[0]['game']
             user_dict['status'] = user_status
